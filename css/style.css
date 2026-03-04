@@ -1,0 +1,89 @@
+/* --- 1. MOBILE VIEW (Default) --- */
+/* Requirement 4: Mobile-first approach, 1 column grid, 10px gap */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #dedede;
+    padding: 5px;
+    margin: 15px;
+    font-size: 25px;
+    font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+.label {
+    text-align: center;
+    font-family: 'Gill Sans', sans-serif;
+    padding: 10px 0;
+}
+
+/* --- 2. TABLET VIEW (772px) --- */
+/* Requirement 5: Trigger at 772px, 2 columns, circular figures */
+@media screen and (min-width: 772px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    figure {
+        border-radius: 50%; /* Requirement 5b: Circular shape */
+        border: 2px solid blue;
+        overflow: hidden;
+        background-color: white;
+    }
+
+    /* Requirement 5c: Last figure takes up both columns */
+    figure:last-of-type {
+        grid-column: 1 / span 2;
+    }
+}
+
+/* --- 3. LARGE SCREEN VIEW (992px) --- */
+/* Requirement 6: Trigger at 992px, remove border-radius */
+@media screen and (min-width: 992px) {
+    .grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    /* Requirement 6a: Every third figure takes up both columns */
+    figure:nth-of-type(3n) {
+        grid-column: span 2;
+    }
+
+    /* Requirement 6b: Remove border radius (No max-width used!) */
+    figure {
+        border-radius: 0;
+    }
+}
+
+/* --- 4. ACCESSIBILITY SETTINGS --- */
+/* Requirement 7: Prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Requirement 8: Dark Color Scheme */
+@media (prefers-color-scheme: dark) {
+    figure {
+        background-color: #333333; /* 8a: Dark background */
+        color: #FFFACD;           /* 8b: Light/Yellowish font */
+        border-color: black;      /* 8c: Black border */
+    }
+}
